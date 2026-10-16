@@ -1,0 +1,55 @@
+project:
+  name: high-fidelity-editable-ppt
+  default_aspect_ratio: "16:9"
+
+quality_targets:
+  visual_fidelity_min: 90
+  editability_min: 80
+
+layers:
+  layer_1:
+    name: environment_background
+    preserve:
+      - scene
+      - lighting
+      - smoke
+      - texture
+      - atmosphere
+      - vignette
+  layer_2:
+    name: content_carrier
+    prefer_native_ppt:
+      - title
+      - subtitle
+      - body
+      - buttons
+      - simple_icons
+      - simple_charts
+      - lines
+      - cards
+  layer_3:
+    name: foreground_decoration
+    elements:
+      - people
+      - badges
+      - decorative_lines
+      - light_effects
+      - foreground_smoke
+
+hard_rules:
+  no_full_slide_image_as_fake_editable_ppt: true
+  no_global_background_redraw_for_text_removal: true
+  preserve_original_design_language: true
+  local_edit_only_when_requested: true
+  avoid_double_images_and_ghosting: true
+  require_reconstructable_fonts: true
+
+quality_gate:
+  check_alignment: true
+  check_spacing: true
+  check_background_integration: true
+  check_edge_blending: true
+  check_lighting_consistency: true
+  check_typography: true
+  check_missing_assets: true
+  check_export: true
